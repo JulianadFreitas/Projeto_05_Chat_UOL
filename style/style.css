@@ -83,6 +83,7 @@ input {
   align-items: center;
   margin: 2.5px 0px;
   display: flex;
+  margin-left: 5px;
 }
 
 .status {
@@ -202,8 +203,8 @@ input {
   font-weight: bold;
 }
 
-.time{
-  color:grey;
+.time {
+  color: grey;
 }
 
 .login {
@@ -220,16 +221,16 @@ input {
 }
 
 .logo {
-width: 130px;
-position: fixed;
-right: calc((100% - 130px)/2);
-top:80px;
+  width: 130px;
+  position: fixed;
+  right: calc((100% - 130px)/2);
+  top: 80px;
 }
 
 
 .login .areaName {
   height: 54px;
-  width:  261px;
+  width: 261px;
   border-radius: 3px;
   border: transparent;
   background: #fff;
