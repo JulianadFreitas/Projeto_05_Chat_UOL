@@ -51,7 +51,7 @@ function rendereziMensagens() {
         } else if (resposta[i].type == "message") {
             messages.innerHTML += `<div class="message"> <p> <span class="time">&nbsp;${resposta[i].time}&nbsp;</span></p><span class="name">${resposta[i].from}&nbsp;</span>para<span class="name">&nbsp;${resposta[i].to}</span><span>:&nbsp;${resposta[i].text} </div>`;
         } else if (resposta[i].type == "private_message" && nome === resposta[i].to) {
-            messages.innerHTML += `<div class="message reservada"><p> <span class="time">&nbsp;${resposta[i].time} <span class="name">${resposta[i].from}&nbsp;</span>reservadamente para &nbsp;<span class="name"> ${resposta[i].to}:</span>${resposta[i].text}</div>`;
+            messages.innerHTML += `<div class="message reservada"><p> <span class="time">&nbsp;${resposta[i].time}<span class="name">${resposta[i].from}&nbsp;</span>reservadamente para<span class="name">${resposta[i].to}:</span>${resposta[i].text}</div>`;
         }
     }
     window.scrollTo(0, document.body.scrollHeight);
@@ -83,7 +83,9 @@ function sendMessage() {
      sendMessages.catch(failed);
 
      function sucess() {
-         sendMessages
+            const promessa = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages");
+            promessa.then(chargeMessages);
+    
     }
     function failed() {
         alert("Sua mensagem não pode ser enviada. Algo deu errado :/");
