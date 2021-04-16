@@ -99,3 +99,9 @@ function participants() {
     show.classList.remove("hidden");
     console.log(buttonParticipants);
 }
+//Volta pra tela inicial
+function back() {
+    const buttonback = document.querySelector(".mask");
+    buttonback.classList.add("hidden");
+    console.log(buttonback);
+}

@@ -10,21 +10,23 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
+  <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
   <style></style>
 </head>
 
 <body>
   <div class="top">
     <img src="imagens/logo 1.png" alt="logo do chat" />
-    <div class="button" onclick="participants()"><ion-icon  name="people"></ion-icon></div>
+    <div class="button" onclick="participants()">
+      <ion-icon name="people"></ion-icon>
+    </div>
   </div>
 
   <div class="messages">
-  
+
   </div>
 
-  <div class="mask hidden">
+  <div class="mask hidden" onclick="back()">
     <div class="contacts">
       <div class="title"><strong> Escolha um contato <br> para enviar mensagem:</strong>
       </div>
@@ -33,10 +35,10 @@
           <ion-icon name="people"></ion-icon>Todos
         </div>
         <div class="people">
-          <ion-icon name="person-circle"></ion-icon>`${name}`
+          <ion-icon name="person-circle"></ion-icon>`nome`
         </div>
         <div class="people">
-          <ion-icon name="person-circle"></ion-icon>"${name}"
+          <ion-icon name="person-circle"></ion-icon>"nome"
         </div>
       </div>
       <div class="visibility">
@@ -60,8 +62,7 @@
   </div>
 
   <div class="baseboard">
-    <input type="text" class="areaMessage" placeholder="Escreva aqui..."
-      placeholder.color="black">
+    <input type="text" class="areaMessage" placeholder="Escreva aqui..." placeholder.color="black">
     <ion-icon name="paper-plane-outline" onclick="sendMessage()"></ion-icon>
   </div>
   <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
