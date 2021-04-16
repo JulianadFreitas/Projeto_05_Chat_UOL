@@ -74,6 +74,7 @@ input {
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;
+  margin-bottom: 80px;
 }
 
 .message {

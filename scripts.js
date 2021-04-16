@@ -1,15 +1,12 @@
+let nome;
 guardaNome();
 
-function chama() {
-    const promessa = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages");
-    promessa.then(chargeMessages);
-}
-
 function guardaNome() {
-    const nome = prompt("Dgite seu nome");
+    nome = prompt("Dgite seu nome");
     let nomeDado = {
         name: nome
     };
+
     const envioNome = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", nomeDado);
 
     envioNome.then(sucess);
@@ -17,7 +14,6 @@ function guardaNome() {
 
     function sucess() {
         alert("Nome aceito");
-        setTimeout(chama, 3000);
     }
 
     function failed() {
@@ -26,36 +22,77 @@ function guardaNome() {
             name: nome
         };
         const envioNome = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", nomeDado);
-
         envioNome.then(sucess);
         envioNome.catch(failed);
     }
 }
 
-function chargeMessages(dados) {
-    console.log(dados);
-    rendereziMensagens(dados.data);
+chama()
+setInterval(chama, 3000);
+
+function chama() {
+    const promessa = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages");
+    promessa.then(chargeMessages);
 }
 
-function rendereziMensagens(parametro) {
+function chargeMessages(dados) {
+    resposta = dados.data;
+    rendereziMensagens();
+}
+
+function rendereziMensagens() {
     const messages = document.querySelector(".messages");
-    messages.innerHTML += "";
+    messages.innerHTML = "";
 
-    for (let i = 0; i < parametro.length; i++) {
+    for (let i = 0; i < resposta.length; i++) {
 
-        if (parametro[i].type == "status") {
-            messages.innerHTML += `<div class="message status">  ${parametro[i].time} <strong>  ${parametro[i].from} </strong>${parametro[i].text}</div>`;
-        } else if (parametro[i].type == "message") {
-            messages.innerHTML += `<div class="message"> ${parametro[i].time} <strong>${parametro[i].from}  para ${parametro[i].to}: </strong>${parametro[i].text}</div>`;
-        } else if (parametro[i].type == "private_message") {
-            messages.innerHTML += `<div class="message reservada">${parametro[i].time}<strong>${parametroa[i].from}</strong>reservadamente para <strong>${parametro[i].to}:</strong>${parametro[i].text}</div>`;
-        } else {
-            messages.innerHTML += "";
+        if (resposta[i].type == "status") {
+            messages.innerHTML += `<div class="message status"> ${resposta[i].time} <strong>  ${resposta[i].from} </strong>${resposta[i].text}</div>`;
+        } else if (resposta[i].type == "message") {
+            messages.innerHTML += `<div class="message"> ${resposta[i].time} <strong>${resposta[i].from}  para ${resposta[i].to}: </strong>${resposta[i].text}</div>`;
+        } else if (resposta[i].type == "private_message" && nome === resposta[i].to) {
+            messages.innerHTML += `<div class="message reservada">${resposta[i].time}<strong>${resposta[i].from}</strong>reservadamente para <strong>${resposta[i].to}:</strong>${resposta[i].text}</div>`;
         }
     }
     window.scrollTo(0, document.body.scrollHeight);
 }
-//onclick dos participantes no botao dos bonequinhos
+
+setInterval(mantemConectado, 2000);
+
+function mantemConectado() {
+    let nomeDado = {
+        name: nome
+    };
+    axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status", nomeDado);
+    console.log(nomeDado)
+}
+
+function sendMessage() {
+    const text = document.querySelector(".areaMessage");
+    const textMessage = {
+		from: nome,
+		to: "Todos",
+		text: text.value,
+		type: "message" 
+	 };
+     console.log(textMessage);
+     const sendMessages = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages", textMessage);
+     console.log(textMessage);
+     text.value="";
+     sendMessages.then(sucess);
+     sendMessages.catch(failed);
+
+     function sucess() {
+        alert("Mensagem enviada!");
+    }
+    function failed() {
+        alert("Sua mensagem não pode ser enviada. Algo deu errado :/");
+        window.location.reload();
+    }
+}
+
+
+//onclick dos participantes no botao 
 function participants() {
     const buttonParticipants = document.querySelector(".top .button");
     const show = document.querySelector(".mask");
