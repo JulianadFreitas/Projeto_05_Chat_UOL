@@ -83,6 +83,7 @@ input {
   background: #fff;
   align-items: center;
   margin: 2.5px 0px;
+  display: flex;
 }
 
 .status {
@@ -194,4 +195,14 @@ input {
   font-size: 15px;
 }
 
+.span {
+  font-weight: bold;
+}
 
+.name {
+  font-weight: bold;
+}
+
+.time{
+  color:grey;
+}

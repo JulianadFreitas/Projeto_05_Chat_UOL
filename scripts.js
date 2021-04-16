@@ -47,11 +47,11 @@ function rendereziMensagens() {
     for (let i = 0; i < resposta.length; i++) {
 
         if (resposta[i].type == "status") {
-            messages.innerHTML += `<div class="message status"> ${resposta[i].time} <strong>  ${resposta[i].from} </strong>${resposta[i].text}</div>`;
+            messages.innerHTML += `<div class="message status"> <p> <span class="time">&nbsp;${resposta[i].time}&nbsp;</span></p><span class="name">${resposta[i].from}&nbsp;</span> ${resposta[i].text} </div>`;
         } else if (resposta[i].type == "message") {
-            messages.innerHTML += `<div class="message"> ${resposta[i].time} <strong>${resposta[i].from}  para ${resposta[i].to}: </strong>${resposta[i].text}</div>`;
+            messages.innerHTML += `<div class="message"> <p> <span class="time">&nbsp;${resposta[i].time}&nbsp;</span></p><span class="name">${resposta[i].from}&nbsp;</span>para<span class="name">&nbsp;${resposta[i].to}</span><span>:&nbsp;${resposta[i].text} </div>`;
         } else if (resposta[i].type == "private_message" && nome === resposta[i].to) {
-            messages.innerHTML += `<div class="message reservada">${resposta[i].time}<strong>${resposta[i].from}</strong>reservadamente para <strong>${resposta[i].to}:</strong>${resposta[i].text}</div>`;
+            messages.innerHTML += `<div class="message reservada"><p> <span class="time">&nbsp;${resposta[i].time}&nbsp;</span><span class="name">${resposta[i].from}&nbsp;</span>reservadamente para &nbsp;<span class="name"> ${resposta[i].to}:</span>${resposta[i].text}</div>`;
         }
     }
     window.scrollTo(0, document.body.scrollHeight);
